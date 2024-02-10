@@ -1,5 +1,6 @@
 // Make connection
 let socket = io.connect('http://localhost:3000');
+let socketDeploy = io.connect('https://webchat-message.onrender.com'); 
 
 // Variables
 let btnDisable = false;
@@ -15,6 +16,10 @@ let message = document.getElementById('message');
 // Emit events
 const btnSend = () => {
     socket.emit('chat', {
+        message: message.value,
+        handle: handle.value
+    });
+    socketDeploy.emit('chat', {
         message: message.value,
         handle: handle.value
     });
@@ -39,6 +44,7 @@ const signIn = () => {
 
 message.addEventListener('keypress', () => {
     socket.emit('typing', handle.value);
+    socketDeploy.emit('typing', handle.value);
 })
 
 // Listen for events
@@ -52,5 +58,18 @@ socket.on('chat', (data) => {
 })
 
 socket.on('typing', (data) => {
+    feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>'
+})
+
+socketDeploy.on('chat', (data) => {
+    feedback.innerHTML = '';
+    handle.disabled = !handle.disabled;
+    output.innerHTML +=
+    '<p><i style="font-size: 24px;" class="fa-solid fa-circle-user"></i> <strong>' 
+    + data.handle + ': </strong>' + data.message + '</p>'
+    message.value = ''
+})
+
+socketDeploy.on('typing', (data) => {
     feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>'
 })
