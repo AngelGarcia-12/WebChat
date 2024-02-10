@@ -13,12 +13,12 @@ let message = document.getElementById('message');
 
 
 // Emit events
-btn.addEventListener('click', () => {
+const btnSend = () => {
     socket.emit('chat', {
         message: message.value,
         handle: handle.value
     });
-})
+}
 
 message.addEventListener("keyup", function(event) {
     // Verifica si se presionó la tecla Enter (código 13)

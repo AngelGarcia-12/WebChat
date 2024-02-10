@@ -1,0 +1,18 @@
+# Ignorar archivos generados por el sistema
+.DS_Store
+Thumbs.db
+
+# Carpeta node_modules generada por npm
+node_modules/
+
+# Carpeta build generada por herramientas de construcción
+build/
+
+# Archivos de registro y archivos de caché
+*.log
+*.cache
+
+# Entorno específico de desarrollo
+.env
+
+# Dependiendo de tu stack tecnológico, podrías necesitar añadir más exclusiones para archivos de configuración y otros archivos generados.
