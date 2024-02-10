@@ -32,6 +32,7 @@ message.addEventListener("keyup", function(event) {
 
 const signIn = () => {
     if(btnDisable === false) {
+        handle.disabled = !handle.disabled;
         message.disabled = !message.disabled;
     }
 }
@@ -43,6 +44,7 @@ message.addEventListener('keypress', () => {
 // Listen for events
 socket.on('chat', (data) => {
     feedback.innerHTML = '';
+    handle.disabled = !handle.disabled;
     output.innerHTML +=
     '<p><i style="font-size: 24px;" class="fa-solid fa-circle-user"></i> <strong>' 
     + data.handle + ': </strong>' + data.message + '</p>'
