@@ -1,5 +1,6 @@
 body{
     font-family: 'Nunito';
+    background-color: #252525;
 }
 
 h2{
@@ -10,16 +11,16 @@ h2{
 
 #gp-chat{
     max-width: 600px;
-    margin: 30px auto;
-    border: 1px solid #ddd;
+    margin: 50px auto;
+    border: 2px solid #ddd;
     box-shadow: 1px 3px 5px rgba(0,0,0,0.05);
-    border-radius: 2px;
+    border-radius: 5px;
 }
 
 #chat-window{
-    height: 400px;
+    height: 500px;
     overflow: auto;
-    background: #f9f9f9;
+    background: whitesmoke;
 }
 
 #output p{
@@ -27,6 +28,31 @@ h2{
     margin: 0 20px;
     border-bottom: 1px solid #e9e9e9;
     color: #555;
+}
+
+.logo {
+    margin: 5px auto;
+    font-size: 36px;
+    padding-left: 20px;
+    display: block;
+}
+
+.signin {
+    text-align: right;
+    font-size: 36px;
+    padding-right: 25px;
+    margin: 0px;
+    display: block;
+    background-color: whitesmoke;
+    color: #252525;
+    max-width: 65px;
+    margin-left: 85%;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.signin:active {
+    color: lightgray;
 }
 
 #feedback p{

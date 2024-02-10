@@ -1,6 +1,9 @@
 // Make connection
 let socket = io.connect('http://localhost:3000');
 
+// Variables
+let btnDisable = false;
+
 // Query DOM
 let message = document.getElementById('message');
     handle = document.getElementById('handle'),
@@ -17,6 +20,22 @@ btn.addEventListener('click', () => {
     });
 })
 
+message.addEventListener("keyup", function(event) {
+    // Verifica si se presionó la tecla Enter (código 13)
+    if (event.keyCode === 13) {
+      // Cancela el comportamiento predeterminado del formulario
+      event.preventDefault();
+      // Simula un clic en el botón
+      btn.click();
+    }
+});
+
+const signIn = () => {
+    if(btnDisable === false) {
+        message.disabled = !message.disabled;
+    }
+}
+
 message.addEventListener('keypress', () => {
     socket.emit('typing', handle.value);
 })
@@ -24,7 +43,10 @@ message.addEventListener('keypress', () => {
 // Listen for events
 socket.on('chat', (data) => {
     feedback.innerHTML = '';
-    output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>'
+    output.innerHTML +=
+    '<p><i style="font-size: 24px;" class="fa-solid fa-circle-user"></i> <strong>' 
+    + data.handle + ': </strong>' + data.message + '</p>'
+    message.value = ''
 })
 
 socket.on('typing', (data) => {
